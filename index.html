@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratika.Makeup | Makeup Artist Cikarang Bekasi Jakarta | MUA Wedding & Engagement | Photoshot</title>
-    <meta name="description" content="Jasa makeup artist profesional di Cikarang, Bekasi & Jakarta. Spesialis wedding, engagement, wisuda & party. Lihat portofolio & booking sekarang!">
-    <meta name="keywords" content="makeup artist cikarang, mua bekasi, makeup artist jakarta, jasa rias pengantin bekasi, mua wedding cikarang, makeup wisuda jakarta">
+    <title>Pratika.Makeup | Makeup Artist Cikarang Bekasi Jakarta | MUA Wedding & Engagement | Makeup Course</title>
+    <meta name="description" content="Jasa makeup artist profesional & Kursus Makeup di Cikarang, Bekasi & Jakarta. Spesialis wedding, engagement, wisuda, party & kelas makeup.">
+    <meta name="keywords" content="makeup artist cikarang, mua bekasi, makeup artist jakarta, jasa rias pengantin bekasi, mua wedding cikarang, kursus makeup cikarang, makeup class bekasi">
     <meta name="author" content="@pratika.makeup">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,10 +80,39 @@
             animation: pulse-glow 3s ease-in-out infinite;
         }
         
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+        /* --- FIX VISIBILITAS DROPDOWN & TANGGAL --- */
+        
+        /* Memaksa browser menggunakan tema gelap untuk widget tanggal dan dropdown */
+        select, input[type="date"] {
+            color-scheme: dark;
+            appearance: none; /* Hilangkan tampilan default browser */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        /* Styling khusus untuk elemen Select (Dropdown) */
+        select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e4e4e7%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.65em auto;
+            padding-right: 2.5rem !important; /* Ruang untuk panah */
+            cursor: pointer;
+        }
+
+        /* Memastikan daftar opsi (option) terbaca dengan background gelap */
+        option {
+            background-color: #18181b; /* Zinc-900 */
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+        }
     </style>
 </head>
 <body class="text-white overflow-x-hidden">
@@ -102,6 +131,7 @@
                 <a href="#about" class="text-sm text-zinc-400 hover:text-white transition-colors duration-150">Tentang</a>
                 <a href="#services" class="text-sm text-zinc-400 hover:text-white transition-colors duration-150">Layanan</a>
                 <a href="#pricelist" class="text-sm text-zinc-400 hover:text-white transition-colors duration-150">Pricelist</a>
+                <a href="#class-pricelist" class="text-sm text-zinc-400 hover:text-white transition-colors duration-150">Kelas</a>
                 <a href="#portfolio" class="text-sm text-zinc-400 hover:text-white transition-colors duration-150">Portfolio</a>
                 <a href="#testimonials" class="text-sm text-zinc-400 hover:text-white transition-colors duration-150">Testimoni</a>
             </div>
@@ -119,24 +149,24 @@
                 <div class="space-y-8">
                     <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel">
                         <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        <span class="text-xs font-medium text-zinc-400">Tersedia untuk Booking</span>
+                        <span class="text-xs font-medium text-zinc-400">Tersedia untuk Booking & Kelas</span>
                     </div>
                     
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-600 leading-[1.1] tracking-tight">
                         <span class="text-gradient">Make Up Artist</span><br>
-                        <span class="text-white">Profesional</span>
+                        <span class="text-white">& School</span>
                     </h1>
                     
                     <p class="text-lg text-zinc-400 font-light leading-relaxed max-w-lg">
-                        Membuat setiap momen spesial Anda menjadi sempurna dengan sentuhan kecantikan yang elegan dan natural. Berpengalaman lebih dari 8 tahun di industri kecantikan.
+                        Membuat setiap momen spesial Anda menjadi sempurna dengan sentuhan kecantikan yang elegan. Juga membuka kesempatan bagi Anda yang ingin belajar makeup secara profesional.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#pricelist" class="bg-white text-black px-8 py-3.5 rounded-xl text-sm font-medium hover:bg-zinc-200 transition-colors duration-150 text-center shadow-lg shadow-indigo-500/10">
-                            Lihat Pricelist
+                            Booking Wedding
                         </a>
-                        <a href="#portfolio" class="glass-panel px-8 py-3.5 rounded-xl text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/5 transition-all duration-150 text-center">
-                            Lihat Portfolio
+                        <a href="#class-pricelist" class="glass-panel px-8 py-3.5 rounded-xl text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/5 transition-all duration-150 text-center">
+                            Info Kelas Makeup
                         </a>
                     </div>
                     
@@ -151,8 +181,8 @@
                             <p class="text-xs text-zinc-500 mt-1">Tahun Pengalaman</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-semibold text-gradient-gold">50+</p>
-                            <p class="text-xs text-zinc-500 mt-1">Event Bulanan</p>
+                            <p class="text-2xl font-semibold text-gradient-gold">100+</p>
+                            <p class="text-xs text-zinc-500 mt-1">Alumni Kelas</p>
                         </div>
                     </div>
                 </div>
@@ -161,6 +191,7 @@
                 <div class="relative">
                     <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-pink-500/20 rounded-3xl blur-2xl"></div>
                     <div class="relative glass-panel rounded-3xl p-2 float-animation">
+                        <!-- Placeholder image -->
                         <img src="image/pratika.profile.png" alt="Make Up Artist" class="w-full h-[500px] object-cover rounded-2xl">
                         
                         <!-- Floating Badge -->
@@ -195,6 +226,7 @@
                 <!-- Image -->
                 <div class="relative">
                     <div class="glass-panel rounded-2xl p-2">
+                        <!-- Placeholder image -->
                         <img src="image/pratika.profile2.jpeg" alt="About MUA" class="w-full h-[450px] object-cover rounded-xl">
                     </div>
                     <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-2xl blur-xl"></div>
@@ -205,13 +237,13 @@
                     <p class="text-xs font-medium text-indigo-400 uppercase tracking-widest">Tentang Saya</p>
                     <h2 class="text-3xl md:text-4xl font-600 tracking-tight">
                         Saya <span class="text-gradient">Pratika</span>,<br>
-                        Make Up Artist Profesional
+                        Make Up Artist & Tutor
                     </h2>
                     <p class="text-zinc-400 font-light leading-relaxed">
-                        Dengan pengalaman lebih dari 8 tahun di industri kecantikan, saya telah membantu ratusan klien tampil cantik dan percaya diri di hari-hari spesial mereka. Mulai dari wedding, foto shoot profesional, hingga event korporat.
+                        Dengan pengalaman lebih dari 8 tahun di industri kecantikan, saya telah membantu ratusan klien tampil cantik dan percaya diri di hari-hari spesial mereka.
                     </p>
                     <p class="text-zinc-400 font-light leading-relaxed">
-                        Filosofi saya sederhana: setiap wajah adalah kanvas yang unik, dan tugas saya adalah menonjolkan kecantikan alami yang sudah ada dengan sentuhan profesional.
+                        Selain melayani jasa rias, saya juga memiliki passion dalam berbagi ilmu melalui kelas-kelas makeup, mencetak MUA baru yang skillful dan siap terjun ke industri.
                     </p>
                     
                     <!-- Skills -->
@@ -220,19 +252,19 @@
                             <div class="w-8 h-8 bg-indigo-500/10 rounded-lg flex items-center justify-center">
                                 <iconify-icon icon="lucide:check" class="text-indigo-400"></iconify-icon>
                             </div>
-                            <span class="text-sm text-zinc-300">Bridal Makeup</span>
+                            <span class="text-sm text-zinc-300">Bridal Specialist</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 bg-pink-500/10 rounded-lg flex items-center justify-center">
                                 <iconify-icon icon="lucide:check" class="text-pink-400"></iconify-icon>
                             </div>
-                            <span class="text-sm text-zinc-300">Editorial Look</span>
+                            <span class="text-sm text-zinc-300">Makeup Tutor</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 bg-purple-500/10 rounded-lg flex items-center justify-center">
                                 <iconify-icon icon="lucide:check" class="text-purple-400"></iconify-icon>
                             </div>
-                            <span class="text-sm text-zinc-300">Special Effects</span>
+                            <span class="text-sm text-zinc-300">Editorial Look</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center">
@@ -268,7 +300,7 @@
                     </div>
                     <h3 class="text-lg font-medium mb-2">Bridal Makeup</h3>
                     <p class="text-sm text-zinc-400 font-light mb-4">Tampil sempurna di hari pernikahan impian Anda dengan makeup yang tahan lama</p>
-                    <p class="text-xs text-zinc-500 group-hover:text-indigo-400 transition-colors">Mulai dari Rp 3.500.000</p>
+                    <p class="text-xs text-zinc-500 group-hover:text-indigo-400 transition-colors">Hubungi Admin</p>
                 </div>
                 
                 <!-- Party -->
@@ -291,29 +323,29 @@
                     <p class="text-xs text-zinc-500 group-hover:text-indigo-400 transition-colors">Mulai dari Rp 1.500.000</p>
                 </div>
                 
-                <!-- Personal -->
+                <!-- Class -->
                 <div class="service-card rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all duration-300 group">
                     <div class="w-12 h-12 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl flex items-center justify-center mb-4">
-                        <iconify-icon icon="lucide:user" class="text-yellow-400 text-xl"></iconify-icon>
+                        <iconify-icon icon="lucide:graduation-cap" class="text-yellow-400 text-xl"></iconify-icon>
                     </div>
-                    <h3 class="text-lg font-medium mb-2">Personal Lesson</h3>
-                    <p class="text-sm text-zinc-400 font-light mb-4">Pelajari teknik makeup dasar hingga advanced secara private</p>
-                    <p class="text-xs text-zinc-500 group-hover:text-indigo-400 transition-colors">Mulai dari Rp 500.000</p>
+                    <h3 class="text-lg font-medium mb-2">Makeup Class</h3>
+                    <p class="text-sm text-zinc-400 font-light mb-4">Belajar makeup dari dasar hingga mahir bersama tutor berpengalaman</p>
+                    <p class="text-xs text-zinc-500 group-hover:text-indigo-400 transition-colors">Lihat Paket Kelas</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricelist Section -->
+    <!-- Pricelist Section (Wedding - Hidden Prices) -->
     <section id="pricelist" class="py-24 px-6 bg-gradient-to-b from-transparent via-indigo-950/20 to-transparent">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-16">
-                <p class="text-xs font-medium text-indigo-400 uppercase tracking-widest mb-4">Pricelist</p>
+                <p class="text-xs font-medium text-indigo-400 uppercase tracking-widest mb-4">Pricelist Wedding</p>
                 <h2 class="text-3xl md:text-4xl font-600 tracking-tight mb-4">
                     Paket <span class="text-gradient">Bridal Makeup</span>
                 </h2>
                 <p class="text-zinc-400 font-light max-w-2xl mx-auto">
-                    Pilih paket yang sesuai dengan kebutuhan dan budget Anda
+                    Pilih paket yang sesuai dengan kebutuhan Anda. Hubungi admin untuk harga terbaik.
                 </p>
             </div>
             
@@ -333,15 +365,16 @@
                                 Essential
                             </span>
                             <h3 class="text-2xl font-semibold mb-2">Bride 1</h3>
-                            <p class="text-sm text-zinc-400 font-light">Paket bridal Makeup & Attire Pakage</p>
+                            <p class="text-sm text-zinc-400 font-light">Paket bridal Makeup & Attire Package</p>
                         </div>
                         
-                        <!-- Price -->
+                        <!-- Price (HIDDEN) -->
                         <div class="mb-8">
                             <div class="flex items-baseline gap-2">
-                                <span class="text-4xl font-semibold text-gradient-gold">Rp 4.500.000</span>
+                                <!-- Harga disembunyikan sesuai request -->
+                                <span class="text-3xl font-semibold text-gradient-gold">Hubungi Admin</span>
                             </div>
-                            <p class="text-xs text-zinc-500 mt-2">Termasuk perjalanan dalam kota</p>
+                            <p class="text-xs text-zinc-500 mt-2">Dapatkan penawaran spesial bulan ini</p>
                         </div>
                         
                         <!-- Features -->
@@ -382,55 +415,24 @@
                                 </div>
                                 <span class="text-sm text-zinc-300">Busana & Makeup Pagar Ayu 2 ( By Team )</span>
                             </li>
-                            <li class="flex items-start gap-3">
+                             <li class="flex items-start gap-3">
                                 <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
                                 </div>
-                                <span class="text-sm text-zinc-300">Hijab do Adat / Nasional</span>
-                            </li>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Manset Pengantin</span>
+                                <span class="text-sm text-zinc-300">Hijab Doa Adat / Nasional</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
                                 </div>
-                                <span class="text-sm text-zinc-300">Kain Pengantin</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Peci / Blankon CPP</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Selop CPP & CPW</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Accessories Adat / Nasional</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Melati Asli Sepasang Adat / Non Adat</span>
+                                <span class="text-sm text-zinc-300">Accessories Lengkap</span>
                             </li>
                             <p class="text-xs text-zinc-700 mt-2">Free Softlens, Henna, & Fakenails Tempel</p>
                         </ul>
                         
                         <!-- CTA Button -->
                         <a href="#contact" class="block w-full py-4 rounded-xl text-center font-medium bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-                            Pilih Paket Ini
+                            Tanya Harga Paket Ini
                         </a>
                     </div>
                 </div>
@@ -458,15 +460,16 @@
                                 Premium
                             </span>
                             <h3 class="text-2xl font-semibold mb-2">Bride 2</h3>
-                            <p class="text-sm text-zinc-400 font-light">Paket lengkap bridal Makeup & Attire Pakage </p>
+                            <p class="text-sm text-zinc-400 font-light">Paket lengkap bridal Makeup & Attire Package </p>
                         </div>
                         
-                        <!-- Price -->
+                        <!-- Price (HIDDEN) -->
                         <div class="mb-8">
                             <div class="flex items-baseline gap-2">
-                                <span class="text-4xl font-semibold text-gradient-gold">Rp 5.500.000</span>
+                                <!-- Harga disembunyikan sesuai request -->
+                                <span class="text-3xl font-semibold text-gradient-gold">Hubungi Admin</span>
                             </div>
-                            <p class="text-xs text-zinc-500 mt-2">Termasuk perjalanan dalam kota</p>
+                            <p class="text-xs text-zinc-500 mt-2">Dapatkan penawaran spesial bulan ini</p>
                         </div>
                         
                         <!-- Features -->
@@ -487,7 +490,7 @@
                                 <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
                                 </div>
-                                <span class="text-sm text-zinc-300">Busana Resepsi 2 Sepasang</span>
+                                <span class="text-sm text-zinc-300">Busana Resepsi 2 Sepasang (Ganti Baju)</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -511,64 +514,185 @@
                                 <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
                                 </div>
-                                <span class="text-sm text-zinc-300">Hijab do Adat / Nasional</span>
-                            </li>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Manset Pengantin</span>
+                                <span class="text-sm text-zinc-300">Hijab Doa Adat / Nasional</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
                                 </div>
-                                <span class="text-sm text-zinc-300">Kain Pengantin</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Peci / Blankon CPP</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Selop CPP & CPW</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Accessories Adat / Nasional</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="w-5 h-5 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <iconify-icon icon="lucide:check" class="text-green-400 text-xs"></iconify-icon>
-                                </div>
-                                <span class="text-sm text-zinc-300">Melati Asli Sepasang Adat / Non Adat</span>
+                                <span class="text-sm text-zinc-300">Accessories Lengkap</span>
                             </li>
                             <p class="text-xs text-zinc-700 mt-2">Free Softlens, Henna, & Fakenails Tempel</p>
                         </ul>
 
                         <!-- CTA Button -->
                         <a href="#contact" class="block w-full py-4 rounded-xl text-center font-medium bg-white text-black hover:bg-zinc-200 transition-all duration-300 shadow-lg shadow-indigo-500/30">
-                            Pilih Paket Premium
+                            Tanya Harga Premium
                         </a>
                     </div>
                 </div>
                 
             </div>
-            
-            <!-- Additional Info -->
-            <div class="mt-12 text-center">
-                <p class="text-sm text-zinc-500">
-                    <iconify-icon icon="lucide:info" class="text-indigo-400 mr-1"></iconify-icon>
-                    Harga dapat disesuaikan dengan kebutuhan spesifik Anda. 
-                    <a href="#contact" class="text-indigo-400 hover:text-indigo-300 transition-colors">Hubungi saya</a> untuk konsultasi.
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Makeup Class Pricelist -->
+    <section id="class-pricelist" class="py-24 px-6 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-xs font-medium text-pink-400 uppercase tracking-widest mb-4">Education</p>
+                <h2 class="text-3xl md:text-4xl font-600 tracking-tight mb-4">
+                    Paket <span class="text-gradient">Kelas Makeup</span>
+                </h2>
+                <p class="text-zinc-400 font-light max-w-2xl mx-auto">
+                    Ingin menjadi MUA profesional atau sekadar belajar merias diri sendiri? Pilih kelas yang sesuai kebutuhanmu.
                 </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Class 1: Private Beginner -->
+                <div class="service-card rounded-2xl p-8 border border-white/5 hover:border-white/10 transition-all duration-300 relative">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:user" class="text-cyan-400 text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Private Beginner</h3>
+                    <p class="text-sm text-zinc-400 mb-6">Belajar dasar makeup untuk daily look hingga party.</p>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-zinc-300">
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-cyan-400"></iconify-icon> 1x Sesi (3 Jam)</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-cyan-400"></iconify-icon> Bedah Wajah & Produk</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-cyan-400"></iconify-icon> Daily & Party Makeup</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-cyan-400"></iconify-icon> Sertifikat & Modul</li>
+                    </ul>
+                    
+                    <div class="mb-6">
+                        <p class="text-2xl font-bold text-gradient-gold">Rp 1.500.000</p>
+                        <p class="text-xs text-zinc-500">Per Sesi</p>
+                    </div>
+
+                    <button onclick="document.getElementById('class-booking').scrollIntoView({behavior: 'smooth'}); document.getElementById('selectClassPackage').value='Private Beginner (Rp 1.500.000)'" class="w-full py-3 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition-colors text-sm font-medium">
+                        Daftar Kelas Ini
+                    </button>
+                </div>
+
+                <!-- Class 2: Private Professional -->
+                <div class="service-card rounded-2xl p-8 border border-pink-500/30 hover:border-pink-500/50 transition-all duration-300 relative bg-gradient-to-b from-pink-500/5 to-transparent transform hover:-translate-y-2">
+                    <div class="absolute top-0 right-0 bg-pink-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">BEST SELLER</div>
+                    <div class="w-12 h-12 bg-gradient-to-br from-pink-500/20 to-rose-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:graduation-cap" class="text-pink-400 text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Private Pro MUA</h3>
+                    <p class="text-sm text-zinc-400 mb-6">Kurikulum lengkap dari nol hingga siap terima job.</p>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-zinc-300">
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-pink-400"></iconify-icon> 5x Pertemuan (Intensif)</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-pink-400"></iconify-icon> Bridal & Engagement</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-pink-400"></iconify-icon> Photography & Business MUA</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-pink-400"></iconify-icon> Portofolio & Sertifikat</li>
+                    </ul>
+                    
+                    <div class="mb-6">
+                        <p class="text-2xl font-bold text-gradient-gold">Rp 5.500.000</p>
+                        <p class="text-xs text-zinc-500">Full Package</p>
+                    </div>
+
+                    <button onclick="document.getElementById('class-booking').scrollIntoView({behavior: 'smooth'}); document.getElementById('selectClassPackage').value='Private Pro MUA (Rp 5.500.000)'" class="w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all text-sm font-medium">
+                        Daftar Kelas Ini
+                    </button>
+                </div>
+
+                <!-- Class 3: Group Class -->
+                <div class="service-card rounded-2xl p-8 border border-white/5 hover:border-white/10 transition-all duration-300 relative">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:users" class="text-purple-400 text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Group Class</h3>
+                    <p class="text-sm text-zinc-400 mb-6">Belajar bersama teman dalam kelompok kecil (Max 5 orang).</p>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-zinc-300">
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-purple-400"></iconify-icon> 1x Pertemuan (4 Jam)</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-purple-400"></iconify-icon> Teknik Dasar Makeup</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-purple-400"></iconify-icon> Praktek Langsung</li>
+                        <li class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-purple-400"></iconify-icon> Snack & Dokumentasi</li>
+                    </ul>
+                    
+                    <div class="mb-6">
+                        <p class="text-2xl font-bold text-gradient-gold">Rp 750.000</p>
+                        <p class="text-xs text-zinc-500">Per Orang</p>
+                    </div>
+
+                    <button onclick="document.getElementById('class-booking').scrollIntoView({behavior: 'smooth'}); document.getElementById('selectClassPackage').value='Group Class (Rp 750.000)'" class="w-full py-3 rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/30 hover:bg-purple-500/20 transition-colors text-sm font-medium">
+                        Daftar Kelas Ini
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Class Booking Form -->
+    <section id="class-booking" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden border-t-4 border-t-pink-500">
+                <!-- Background Decoration -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative">
+                    <div class="text-center mb-12">
+                        <span class="inline-block px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full text-xs font-semibold mb-4 tracking-wide uppercase">Pendaftaran Siswa Baru</span>
+                        <h2 class="text-3xl md:text-4xl font-600 tracking-tight mb-4">
+                            Formulir <span class="text-gradient">Kelas Makeup</span>
+                        </h2>
+                        <p class="text-zinc-400 font-light">
+                            Isi data diri Anda untuk mendaftar kelas. Admin akan segera menghubungi via WhatsApp.
+                        </p>
+                    </div>
+                    
+                    <form id="classForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="text-sm text-zinc-400 mb-2 block">Nama Lengkap</label>
+                                <input type="text" id="className" placeholder="Nama Anda" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition-colors text-white">
+                            </div>
+                            <div>
+                                <label class="text-sm text-zinc-400 mb-2 block">No. WhatsApp</label>
+                                <input type="tel" id="classPhone" placeholder="08xxxxxxxxxx" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition-colors text-white">
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="text-sm text-zinc-400 mb-2 block">Pilih Paket Kelas</label>
+                                <!-- Perbaikan: text-white agar terbaca, ditambah CSS color-scheme -->
+                                <select id="selectClassPackage" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition-colors text-white">
+                                    <option value="" class="bg-zinc-900">Pilih Paket...</option>
+                                    <option value="Private Beginner (Rp 1.500.000)" class="bg-zinc-900">Private Beginner - Rp 1.500.000</option>
+                                    <option value="Private Pro MUA (Rp 5.500.000)" class="bg-zinc-900">Private Pro MUA - Rp 5.500.000</option>
+                                    <option value="Group Class (Rp 750.000)" class="bg-zinc-900">Group Class - Rp 750.000</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-sm text-zinc-400 mb-2 block">Rencana Tanggal</label>
+                                <!-- Perbaikan: text-white agar terbaca -->
+                                <input type="date" id="classDate" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition-colors text-white">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm text-zinc-400 mb-2 block">Domisili / Alamat</label>
+                            <input type="text" id="classAddress" placeholder="Kota tempat tinggal..." required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition-colors text-white">
+                        </div>
+
+                        <div>
+                            <label class="text-sm text-zinc-400 mb-2 block">Pesan / Pertanyaan</label>
+                            <textarea id="classMessage" rows="3" placeholder="Ada pertanyaan khusus seputar kelas?" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition-colors resize-none text-white"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-xl font-medium hover:opacity-90 transition-all duration-300 shadow-lg shadow-pink-500/20 flex items-center justify-center gap-2">
+                            <iconify-icon icon="lucide:send"></iconify-icon>
+                            Kirim Pendaftaran
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -664,7 +788,7 @@
             <!-- View More -->
             <div class="text-center mt-12">
                 <a href="https://www.instagram.com/pratika.makeup" class="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">
-                    Lihat Lebih Banyak
+                    Lihat Lebih Banyak di Instagram
                     <iconify-icon icon="lucide:arrow-right"></iconify-icon>
                 </a>
             </div>
@@ -677,7 +801,7 @@
             <div class="text-center mb-16">
                 <p class="text-xs font-medium text-indigo-400 uppercase tracking-widest mb-4">Testimoni</p>
                 <h2 class="text-3xl md:text-4xl font-600 tracking-tight mb-4">
-                    Apa Kata <span class="text-gradient">Klien</span> Saya
+                    Apa Kata <span class="text-gradient">Klien & Siswa</span> Saya
                 </h2>
             </div>
             
@@ -693,7 +817,7 @@
                         <iconify-icon icon="lucide:star" class="text-yellow-400 text-sm"></iconify-icon>
                     </div>
                     <p class="text-sm text-zinc-300 font-light leading-relaxed mb-6">
-                        "Pratika Makeup benar-benar profesional! Makeup saya tahan seharian penuh dari akad nikah sampai resepsi selesai. Hasilnya natural tapi tetap glam. Sangat recommend!"
+                        "Pratika Makeup benar-benar profesional! Makeup saya tahan seharian penuh dari akad nikah sampai resepsi selesai. Hasilnya natural tapi tetap glam."
                     </p>
                     <div class="flex items-center gap-3">
                         <img src="https://picsum.photos/seed/client1/100/100" alt="Client" class="w-10 h-10 rounded-full object-cover">
@@ -714,13 +838,13 @@
                         <iconify-icon icon="lucide:star" class="text-yellow-400 text-sm"></iconify-icon>
                     </div>
                     <p class="text-sm text-zinc-300 font-light leading-relaxed mb-6">
-                        "Sudah 3x pakai jasa Pratika Makeup untuk berbagai event. Selalu puas dengan hasilnya. Dia sangat memperhatikan detail dan bisa mengerti apa yang kita mau."
+                        "Ikut kelas Private Pro di sini sangat worth it! Kak Pratika ngajarnya detail dan sabar. Sekarang saya sudah berani terima job wedding sendiri."
                     </p>
                     <div class="flex items-center gap-3">
-                        <img src="https://picsum.photos/seed/client2/100/100" alt="Client" class="w-10 h-10 rounded-full object-cover">
+                        <img src="https://picsum.photos/seed/student1/100/100" alt="Student" class="w-10 h-10 rounded-full object-cover">
                         <div>
-                            <p class="text-sm font-medium">Anita Permata</p>
-                            <p class="text-xs text-zinc-500">Returning Client</p>
+                            <p class="text-sm font-medium">Dina Amelia</p>
+                            <p class="text-xs text-zinc-500">Alumni Kelas 2023</p>
                         </div>
                     </div>
                 </div>
@@ -735,7 +859,7 @@
                         <iconify-icon icon="lucide:star" class="text-yellow-400 text-sm"></iconify-icon>
                     </div>
                     <p class="text-sm text-zinc-300 font-light leading-relaxed mb-6">
-                        "Untuk foto shoot katalog brand saya, Pratika Makeup memberikan hasil yang sempurna! Look-nya clean, professional, dan sesuai brief. Pasti bakal kerja sama lagi!"
+                        "Untuk foto shoot katalog brand saya, Pratika Makeup memberikan hasil yang sempurna! Look-nya clean, professional, dan sesuai brief."
                     </p>
                     <div class="flex items-center gap-3">
                         <img src="https://picsum.photos/seed/client3/100/100" alt="Client" class="w-10 h-10 rounded-full object-cover">
@@ -748,7 +872,8 @@
             </div>
         </div>
     </section>
-<!-- Contact Section -->
+
+    <!-- General Contact Section (Wedding/Service Inquiry) -->
     <section id="contact" class="py-24 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden">
@@ -758,10 +883,10 @@
                 <div class="relative">
                     <div class="text-center mb-12">
                         <h2 class="text-3xl md:text-4xl font-600 tracking-tight mb-4">
-                            Mari <span class="text-gradient">Berdiskusi</span>
+                            Konsultasi <span class="text-gradient">Jasa Makeup</span>
                         </h2>
                         <p class="text-zinc-400 font-light">
-                            Konsultasi gratis untuk kebutuhan makeup Anda
+                            Formulir khusus untuk Booking Wedding / Engagement / Event
                         </p>
                     </div>
                     
@@ -769,42 +894,46 @@
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="text-sm text-zinc-400 mb-2 block">Nama Lengkap</label>
-                                <input type="text" id="inputName" placeholder="Nama Anda" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors">
+                                <input type="text" id="inputName" placeholder="Nama Anda" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-white">
                             </div>
                             <div>
                                 <label class="text-sm text-zinc-400 mb-2 block">No. WhatsApp</label>
-                                <input type="tel" id="inputPhone" placeholder="08xxxxxxxxxx" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors">
+                                <input type="tel" id="inputPhone" placeholder="08xxxxxxxxxx" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-white">
                             </div>
                         </div>
                         
                         <div>
                                 <label class="text-sm text-zinc-400 mb-2 block">Alamat</label>
-                                <input type="text" id="inputalamat" placeholder="Alamat" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors">
+                                <input type="text" id="inputalamat" placeholder="Alamat Venue/Acara" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-white">
                             </div>
                             <div>
-                                <label class="text-sm text-zinc-400 mb-2 block">Maps Llokasi</label>
-                                <input type="text" id="inputmaps" placeholder="https://maps.app.goo.gl/yRYVNrvDCsr7pLxo9" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors">
+                                <label class="text-sm text-zinc-400 mb-2 block">Link Maps Lokasi</label>
+                                <input type="text" id="inputmaps" placeholder="https://maps.app.goo.gl/..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-white">
                             </div>
                         </div>
 
                         <div>
-                            <label class="text-sm text-zinc-400 mb-2 block">Pilih Paket</label>
-                            <select id="selectPackage" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-zinc-300">
-                                <option value="">Pilih Paket</option>
-                                <option value="Bride 1 - Rp 3.500.000">Bride 1 - Rp 4.500.000</option>
-                                <option value="Bride 2 - Rp 5.500.000">Bride 2 - Rp 5.500.000</option>
-                                <option value="Custom Package">Custom Package</option>
+                            <label class="text-sm text-zinc-400 mb-2 block">Pilih Layanan</label>
+                            <!-- Perbaikan: text-white agar terbaca -->
+                            <select id="selectPackage" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-white">
+                                <option value="" class="bg-zinc-900">Pilih Paket Layanan...</option>
+                                <option value="Bride 1 (Tanya Admin)" class="bg-zinc-900">Bride 1 - Essential</option>
+                                <option value="Bride 2 (Tanya Admin)" class="bg-zinc-900">Bride 2 - Premium</option>
+                                <option value="Engagement Makeup" class="bg-zinc-900">Engagement Makeup</option>
+                                <option value="Party / Graduation" class="bg-zinc-900">Party / Graduation</option>
+                                <option value="Photoshoot" class="bg-zinc-900">Editorial / Photoshoot</option>
                             </select>
                         </div>
                         
                         <div>
                             <label class="text-sm text-zinc-400 mb-2 block">Tanggal Acara</label>
-                            <input type="date" id="inputDate" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-zinc-300">
+                            <!-- Perbaikan: text-white agar terbaca -->
+                            <input type="date" id="inputDate" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors text-white">
                         </div>
                         
                         <div>
                             <label class="text-sm text-zinc-400 mb-2 block">Pesan</label>
-                            <textarea id="inputMessage" rows="4" placeholder="Ceritakan kebutuhan makeup Anda..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors resize-none"></textarea>
+                            <textarea id="inputMessage" rows="4" placeholder="Ceritakan detail kebutuhan makeup Anda..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors resize-none text-white"></textarea>
                         </div>
                         
                         <button type="submit" class="w-full bg-white text-black py-4 rounded-xl font-medium hover:bg-zinc-200 transition-colors duration-150 shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2">
@@ -844,7 +973,7 @@
                     <p class="text-lg font-semibold tracking-tight">
                         <span class="text-gradient-gold">Pratika</span> Makeup
                     </p>
-                    <p class="text-xs text-zinc-500 mt-1">Professional Make Up Artist</p>
+                    <p class="text-xs text-zinc-500 mt-1">Professional Make Up Artist & School</p>
                 </div>
                 
                 <div class="flex items-center gap-6">
@@ -860,71 +989,92 @@
                 </div>
                 
                 <p class="text-xs text-zinc-600">
-                    © 2022 pratika.makeup. All rights reserved.
+                    © 2024 pratika.makeup. All rights reserved.
                 </p>
             </div>
         </div>
     </footer>
-     <!-- JavaScript for WhatsApp -->
+    
+     <!-- JavaScript for Forms -->
     <script>
-        // GANTI DENGAN NOMOR WHATSAPP ANDA (format: 628xxxxxxxxxx)
+        // Nomor WhatsApp Admin
         const whatsappNumber = '6287775792589';
 
-        // Fungsi untuk memilih paket dari pricelist
-        function selectPackage(packageName) {
-            document.getElementById('selectPackage').value = packageName;
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Fungsi untuk mengirim form ke WhatsApp
+        // --- LOGIC FORM 1: BOOKING WEDDING / LAYANAN ---
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Ambil nilai dari form
             const name = document.getElementById('inputName').value;
             const phone = document.getElementById('inputPhone').value;
-            const Alamat = document.getElementById('inputalamat').value;
-            const Maps = document.getElementById('inputmaps').value;
+            const alamat = document.getElementById('inputalamat').value;
+            const maps = document.getElementById('inputmaps').value;
             const selectedPackage = document.getElementById('selectPackage').value;
             const date = document.getElementById('inputDate').value;
             const message = document.getElementById('inputMessage').value;
 
-            // Format tanggal ke format Indonesia
+            // Format tanggal
             const formattedDate = date ? new Date(date).toLocaleDateString('id-ID', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
             }) : 'Belum ditentukan';
 
-            // Buat pesan WhatsApp
+            // Template Pesan Wedding
             let waMessage = `Halo Kak Pratika! 💄\n\n`;
-            waMessage += `Saya ingin melakukan booking:\n`;
+            waMessage += `Saya ingin konsultasi/booking Layanan Makeup:\n`;
             waMessage += `━━━━━━━━━━━━━━━━━━━━\n`;
             waMessage += `👤 *Nama:* ${name}\n`;
             waMessage += `📱 *No. WhatsApp:* ${phone}\n`;
-            waMessage += `📦 *Paket:* ${selectedPackage}\n`;
+            waMessage += `📦 *Layanan:* ${selectedPackage}\n`;
             waMessage += `📅 *Tanggal Acara:* ${formattedDate}\n`;
-            waMessage += `🏠 *Alamat Rumah:* ${Alamat}\n`;
-            waMessage += `📍 *Maps lokasi:* ${Maps}\n`;
+            waMessage += `🏠 *Alamat:* ${alamat}\n`;
+            if(maps) waMessage += `📍 *Link Maps:* ${maps}\n`;
             
             if (message) {
                 waMessage += `\n💬 *Pesan Tambahan:*\n${message}\n`;
             }
-            
             waMessage += `━━━━━━━━━━━━━━━━━━━━\n`;
-            waMessage += `\nMohon informasi lebih lanjut. Terima kasih! 🙏`;
+            waMessage += `\nMohon informasi ketersediaan tanggal. Terima kasih! 🙏`;
 
-            // Encode pesan untuk URL
             const encodedMessage = encodeURIComponent(waMessage);
+            const waUrl = `https://wa.me/${6287775792589}?text=${encodedMessage}`;
+            window.open(waUrl, '_blank');
+        });
 
-            // Buka WhatsApp
+        // --- LOGIC FORM 2: PENDAFTARAN KELAS (BARU) ---
+        document.getElementById('classForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('className').value;
+            const phone = document.getElementById('classPhone').value;
+            const packageClass = document.getElementById('selectClassPackage').value;
+            const date = document.getElementById('classDate').value;
+            const address = document.getElementById('classAddress').value;
+            const message = document.getElementById('classMessage').value;
+
+            // Format tanggal
+            const formattedDate = date ? new Date(date).toLocaleDateString('id-ID', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            }) : 'Belum ditentukan';
+
+            // Template Pesan Kelas
+            let waMessage = `Halo Kak Pratika! 🎓\n\n`;
+            waMessage += `Saya ingin mendaftar *Kelas Makeup*:\n`;
+            waMessage += `━━━━━━━━━━━━━━━━━━━━\n`;
+            waMessage += `👤 *Nama Calon Siswa:* ${name}\n`;
+            waMessage += `📱 *No. WhatsApp:* ${phone}\n`;
+            waMessage += `🎓 *Paket Kelas:* ${packageClass}\n`;
+            waMessage += `📅 *Rencana Tanggal:* ${formattedDate}\n`;
+            waMessage += `📍 *Domisili:* ${address}\n`;
+            
+            if (message) {
+                waMessage += `\n💬 *Pertanyaan/Pesan:*\n${message}\n`;
+            }
+            waMessage += `━━━━━━━━━━━━━━━━━━━━\n`;
+            waMessage += `\nMohon info ketersediaan kelas & cara pembayaran. Terima kasih! 🙏`;
+
+            const encodedMessage = encodeURIComponent(waMessage);
             const waUrl = `https://wa.me/${6287775792589}?text=${encodedMessage}`;
             window.open(waUrl, '_blank');
         });
     </script>
 </body>
 </html>
-
-
- 
