@@ -1,1 +1,1456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratika Wedding — Premium Wedding Organizer & Makeup Artist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    // MENYESUAIKAN WARNA TEMA PRATIKA (Purple/Pink)
+                    colors: {
+                        // Menggunakan key 'gold' agar tidak perlu mengubah seluruh class di HTML, 
+                        // tapi warnanya diarahkan ke tema Pratika.
+                        gold: { 400: '#c084fc', 500: '#a855f7', 600: '#9333ea' }, // Purple
+                        dark: { 950: '#050505', 900: '#0A0A0A', 800: '#121212', 700: '#1C1C1C' },
+                        pink: { 400: '#f472b6', 500: '#ec4899' } // Tambahan warna pink
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        logo: ['Audiowide', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'scroll-infinite': 'scrollInfinite 25s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+                        'scan': 'scan 4s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        scrollInfinite: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        scan: {
+                            '0%': { top: '-10%', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { top: '110%', opacity: '0' }
+                        },
+                        float: {
+                            '0%,100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #050505; color: #fff; }
+        .font-logo { font-family: 'Audiowide', sans-serif; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.05);
+            transition: all 500ms;
+        }
+        .glass-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(168, 85, 247, 0.3); /* Hover color changed to Purple */
+        }
+        
+        /* Gradient Text Khas Pratika */
+        .text-gradient {
+            background: linear-gradient(to right, #a5b4fc, #d8b4fe, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .text-glow-hover:hover { text-shadow: 0 0 15px rgba(168, 85, 247, 0.8); }
+        .mask-fade {
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+        .hero-overlay {
+            background: linear-gradient(to right, #050505, rgba(5,5,5,0.85), rgba(5,5,5,0.3));
+        }
+        .hero-bottom {
+            background: linear-gradient(to top, #050505, transparent);
+        }
+        .img-zoom { transition: transform 0.7s ease; }
+        .img-zoom:hover { transform: scale(1.08); }
+        
+        /* Tombol Utama dengan Gradient Pratika */
+        .btn-gold {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); /* Purple to Pink */
+            color: #ffffff; 
+            font-weight: 600;
+            transition: all 150ms;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+        .btn-gold:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.6); /* Pink Glow */
+        }
+        
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.2); color: #fff;
+            transition: all 200ms;
+        }
+        .btn-outline:hover { border-color: #a855f7; color: #a855f7; }
+        
+        /* Input Styling dengan Perbaikan Dropdown */
+        input, textarea, select {
+            background: rgba(255,255,255,0.05) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            color: #fff !important;
+            transition: border-color 300ms !important;
+            color-scheme: dark !important; /* FIX: Memaksa dark mode pada widget browser */
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #a855f7 !important;
+            outline: none !important;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2) !important;
+        }
+        input::placeholder, textarea::placeholder { color: #71717a !important; }
+        select option { background: #121212; color: #fff; }
+        .parallax-bg { transition: transform 0.1s linear; }
+        .tab-active { background: #a855f7 !important; color: #ffffff !important; border-color: #a855f7; }
+        .checklist-item.checked .check-box { background: #a855f7; border-color: #a855f7; }
+        .checklist-item.checked .check-box svg { opacity: 1; }
+        .checklist-item.checked span { text-decoration: line-through; color: #71717a; }
+        .toast {
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: #1C1C1C; border: 1px solid rgba(168, 85, 247, 0.3); color: #fff;
+            padding: 16px 28px; border-radius: 12px; z-index: 9999;
+            opacity: 0; transition: all 0.4s ease; pointer-events: none;
+            backdrop-filter: blur(10px);
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        @media (max-width: 768px) {
+            .hero-overlay { background: linear-gradient(to bottom, #050505, rgba(5,5,5,0.7), rgba(5,5,5,0.4)); }
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1C1C1C; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a855f7; }
+    </style>
+</head>
+<body class="antialiased">
 
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+    <div class="flex items-center gap-3">
+        <i data-lucide="check-circle" class="w-5 h-5 text-gold-400"></i>
+        <span id="toast-msg">Mengarahkan ke WhatsApp...</span>
+    </div>
+</div>
+
+<!-- ==================== NAVBAR ==================== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#hero" class="font-logo text-xl text-gold-400 tracking-wider">PRATIKA</a>
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="#about" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">Tentang</a>
+            <a href="#services" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">Layanan</a>
+            <a href="#portfolio" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">Portfolio</a>
+            <a href="#packages" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">Paket</a>
+            <a href="#checklist" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">Checklist</a>
+            <a href="#budget" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">Budget</a>
+            <a href="#testimonials" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">Testimoni</a>
+            <a href="#faq" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors text-glow-hover">FAQ</a>
+            <a href="#contact" class="btn-gold px-6 py-2.5 rounded-xl text-sm">Konsultasi Gratis</a>
+        </div>
+        <!-- Mobile Toggle -->
+        <button id="mobile-toggle" class="lg:hidden text-white">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-dark-900/95 backdrop-blur-xl border-t border-white/5">
+        <div class="px-6 py-6 flex flex-col gap-4">
+            <a href="#about" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">Tentang</a>
+            <a href="#services" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">Layanan</a>
+            <a href="#portfolio" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">Portfolio</a>
+            <a href="#packages" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">Paket</a>
+            <a href="#checklist" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">Checklist</a>
+            <a href="#budget" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">Budget</a>
+            <a href="#testimonials" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">Testimoni</a>
+            <a href="#faq" class="mobile-link text-sm font-medium text-zinc-400 hover:text-white py-2">FAQ</a>
+            <a href="#contact" class="mobile-link btn-gold px-6 py-3 rounded-xl text-sm text-center mt-2">Konsultasi Gratis</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+        <img src="https://picsum.photos/seed/pratika-wedding-wo/1920/1080.jpg" alt="Wedding" class="w-full h-full object-cover parallax-bg" id="hero-bg">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="hero-bottom absolute inset-0"></div>
+    </div>
+    <!-- Decorative Blobs -->
+    <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-400/5 rounded-full blur-[100px] animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gold-400/3 rounded-full blur-[80px] animate-pulse-slow" style="animation-delay:1.5s"></div>
+    <!-- Content -->
+    <div class="relative max-w-7xl mx-auto px-6 pt-20 grid lg:grid-cols-2 gap-12 items-center w-full">
+        <div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-8 animate-fade-in-up">
+                <span class="w-2 h-2 bg-gold-400 rounded-full animate-pulse"></span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Makeup Artist & Wedding Organizer</span>
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-semibold leading-[1.05] tracking-tight mb-6 animate-fade-in-up" style="animation-delay:0.2s">
+                <span class="text-gradient">Wujudkan</span><br>
+                <span class="text-gold-400">Pernikahan</span><br>
+                <span class="text-gradient">Impianmu</span>
+            </h1>
+            <p class="text-base font-light leading-relaxed text-zinc-400 max-w-lg mb-10 animate-fade-in-up" style="animation-delay:0.4s">
+                Layanan lengkap Makeup Artist & Wedding Organizer profesional. Dari rias wajah sempurna hingga koordinasi acara tanpa cela, kami siap mewujudkan momen bahagiamu.
+            </p>
+            <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay:0.6s">
+                <a href="#contact" class="btn-gold px-8 py-4 rounded-xl text-base inline-flex items-center gap-2">
+                    Mulai Konsultasi <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#portfolio" class="btn-outline px-8 py-4 rounded-xl text-base inline-flex items-center gap-2">
+                    <i data-lucide="play" class="w-4 h-4"></i> Lihat Portfolio
+                </a>
+            </div>
+            <!-- Stats Mini -->
+            <div class="flex gap-8 mt-12 animate-fade-in-up" style="animation-delay:0.8s">
+                <div>
+                    <div class="text-2xl font-semibold text-gold-400">500+</div>
+                    <div class="text-xs text-zinc-500 mt-1">Klien Bahagia</div>
+                </div>
+                <div class="w-px bg-white/10"></div>
+                <div>
+                    <div class="text-2xl font-semibold text-gold-400">8+</div>
+                    <div class="text-xs text-zinc-500 mt-1">Tahun Pengalaman</div>
+                </div>
+                <div class="w-px bg-white/10"></div>
+                <div>
+                    <div class="text-2xl font-semibold text-gold-400">4.9</div>
+                    <div class="text-xs text-zinc-500 mt-1">Rating Klien</div>
+                </div>
+            </div>
+        </div>
+        <!-- Floating Card -->
+        <div class="hidden lg:block animate-float">
+            <div class="glass-card rounded-2xl p-6 max-w-xs ml-auto">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center">
+                        <i data-lucide="calendar-heart" class="w-5 h-5 text-gold-400"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-medium">Wedding Berikutnya</div>
+                        <div class="text-xs text-zinc-500">28 Desember 2025</div>
+                    </div>
+                </div>
+                <div class="flex gap-3 mb-4">
+                    <div class="flex-1 bg-white/5 rounded-xl p-3 text-center">
+                        <div class="text-xl font-semibold text-gold-400" id="countdown-d">00</div>
+                        <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Hari</div>
+                    </div>
+                    <div class="flex-1 bg-white/5 rounded-xl p-3 text-center">
+                        <div class="text-xl font-semibold text-gold-400" id="countdown-h">00</div>
+                        <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Jam</div>
+                    </div>
+                    <div class="flex-1 bg-white/5 rounded-xl p-3 text-center">
+                        <div class="text-xl font-semibold text-gold-400" id="countdown-m">00</div>
+                        <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Menit</div>
+                    </div>
+                    <div class="flex-1 bg-white/5 rounded-xl p-3 text-center">
+                        <div class="text-xl font-semibold text-gold-400" id="countdown-s">00</div>
+                        <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Detik</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-zinc-500">
+                    <i data-lucide="map-pin" class="w-3 h-3"></i>
+                    <span>Harmoni One, Cikarang</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <span class="text-[10px] text-zinc-500 uppercase tracking-widest">Scroll</span>
+        <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500"></i>
+    </div>
+</section>
+
+<!-- ==================== MARQUEE STATS ==================== -->
+<section class="py-8 border-y border-white/5 overflow-hidden">
+    <div class="mask-fade">
+        <div class="flex animate-scroll-infinite whitespace-nowrap">
+            <div class="flex items-center gap-16 px-8">
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">500+</span> Pernikahan Sukses</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">50+</span> Venue Partner</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">100+</span> Vendor Terpercaya</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">30+</span> Kota di Indonesia</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">15+</span> Penghargaan</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">98%</span> Klien Puas</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">24/7</span> Customer Support</span>
+                <span class="text-gold-400/30">✦</span>
+            </div>
+            <div class="flex items-center gap-16 px-8">
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">500+</span> Pernikahan Sukses</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">50+</span> Venue Partner</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">100+</span> Vendor Terpercaya</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">30+</span> Kota di Indonesia</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">15+</span> Penghargaan</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">98%</span> Klien Puas</span>
+                <span class="text-gold-400/30">✦</span>
+                <span class="text-sm text-zinc-500"><span class="text-gold-400 font-semibold">24/7</span> Customer Support</span>
+                <span class="text-gold-400/30">✦</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section id="about" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Image Grid -->
+            <div class="reveal relative">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <div class="rounded-2xl overflow-hidden h-48"><img src="https://picsum.photos/seed/pratika-team/400/384.jpg" class="w-full h-full object-cover img-zoom" alt="Team"></div>
+                        <div class="rounded-2xl overflow-hidden h-64"><img src="https://picsum.photos/seed/pratika-makeup-bride/400/512.jpg" class="w-full h-full object-cover img-zoom" alt="Makeup"></div>
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <div class="rounded-2xl overflow-hidden h-64"><img src="https://picsum.photos/seed/pratika-deco/400/512.jpg" class="w-full h-full object-cover img-zoom" alt="Decoration"></div>
+                        <div class="rounded-2xl overflow-hidden h-48"><img src="https://picsum.photos/seed/pratika-couple/400/384.jpg" class="w-full h-full object-cover img-zoom" alt="Couple"></div>
+                    </div>
+                </div>
+                <!-- Experience Badge -->
+                <div class="absolute -bottom-6 -right-6 lg:right-auto lg:-left-6 glass-card rounded-2xl p-5 bg-dark-900/90">
+                    <div class="text-3xl font-semibold text-gold-400">8+</div>
+                    <div class="text-xs text-zinc-400 mt-1">Tahun<br>Pengalaman</div>
+                </div>
+            </div>
+            <!-- Text -->
+            <div class="reveal" style="transition-delay:0.2s">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Tentang Pratika</span>
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-6">
+                    <span class="text-gradient">Lebih dari Sekadar</span><br>
+                    <span class="text-gold-400">Makeup & WO</span>
+                </h2>
+                <p class="text-base font-light leading-relaxed text-zinc-400 mb-6">
+                    Pratika Makeup & Wedding Organizer lahir dari passion untuk menciptakan momen yang tak terlupakan. Kami percaya setiap pasangan memiliki cerita unik yang layak ditampilkan dengan sempurna, dimulai dari rias wajah yang memukau hingga eksekusi acara yang rapi.
+                </p>
+                <p class="text-base font-light leading-relaxed text-zinc-400 mb-8">
+                    Dengan tim profesional yang berpengalaman dan jaringan vendor terpercaya di Cikarang, Bekasi, dan Jakarta, kami memastikan setiap detail — dari konsep, dekorasi, hingga eksekusi — berjalan tanpa cela.
+                </p>
+                <!-- Vision & Mission -->
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="glass-card rounded-xl p-4">
+                        <div class="w-10 h-10 rounded-lg bg-gold-400/10 flex items-center justify-center mb-3">
+                            <i data-lucide="eye" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                        <h4 class="text-sm font-semibold mb-1">Visi</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed">Menjadi partner terpercaya pernikahan impian</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4">
+                        <div class="w-10 h-10 rounded-lg bg-gold-400/10 flex items-center justify-center mb-3">
+                            <i data-lucide="target" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                        <h4 class="text-sm font-semibold mb-1">Misi</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed">Memberikan layanan personal & berkesan</p>
+                    </div>
+                </div>
+                <a href="#services" class="btn-outline px-6 py-3 rounded-xl text-sm inline-flex items-center gap-2">
+                    Pelajari Layanan Kami <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section id="services" class="py-24 bg-dark-900">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Layanan Kami</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Solusi Lengkap untuk</span> <span class="text-gold-400">Hari Bahagiamu</span>
+            </h2>
+            <p class="text-base font-light text-zinc-400 max-w-2xl mx-auto">Dari makeup artist hingga koordinasi acara, kami siapkan semua yang kamu butuhkan</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Service 1 -->
+            <div class="glass-card rounded-2xl p-8 reveal group">
+                <div class="w-14 h-14 rounded-2xl bg-gold-400/10 flex items-center justify-center mb-6 group-hover:bg-gold-400/20 transition-colors">
+                    <i data-lucide="sparkles" class="w-7 h-7 text-gold-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Bridal Makeup</h3>
+                <p class="text-sm font-light text-zinc-400 leading-relaxed mb-4">Rias pengantin profesional dengan sentuhan natural hingga glamor. Tahan lama dan fotogenik.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>2 Look Changes (Akad & Resepsi)</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Airbrush Makeup Available</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Include Family Makeup</li>
+                </ul>
+            </div>
+            <!-- Service 2 -->
+            <div class="glass-card rounded-2xl p-8 reveal group" style="transition-delay:0.1s">
+                <div class="w-14 h-14 rounded-2xl bg-gold-400/10 flex items-center justify-center mb-6 group-hover:bg-gold-400/20 transition-colors">
+                    <i data-lucide="clipboard-list" class="w-7 h-7 text-gold-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Wedding Organizer</h3>
+                <p class="text-sm font-light text-zinc-400 leading-relaxed mb-4">Koordinasi acara menyeluruh dari H-6 bulan hingga Hari H. Pastikan semua berjalan lancar.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Rundown Acara Detail</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Koordinasi 10+ Vendor</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Tim Standby di Lokasi</li>
+                </ul>
+            </div>
+            <!-- Service 3 -->
+            <div class="glass-card rounded-2xl p-8 reveal group" style="transition-delay:0.2s">
+                <div class="w-14 h-14 rounded-2xl bg-gold-400/10 flex items-center justify-center mb-6 group-hover:bg-gold-400/20 transition-colors">
+                    <i data-lucide="palette" class="w-7 h-7 text-gold-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Dekorasi & Desain</h3>
+                <p class="text-sm font-light text-zinc-400 leading-relaxed mb-4">Konsep dekorasi eksklusif yang disesuaikan dengan tema impianmu. Rustic, Modern, hingga Adat.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Custom Design Pelaminan</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Fresh & Artificial Flowers</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Backdrop & Lighting</li>
+                </ul>
+            </div>
+            <!-- Service 4 -->
+            <div class="glass-card rounded-2xl p-8 reveal group" style="transition-delay:0.3s">
+                <div class="w-14 h-14 rounded-2xl bg-gold-400/10 flex items-center justify-center mb-6 group-hover:bg-gold-400/20 transition-colors">
+                    <i data-lucide="camera" class="w-7 h-7 text-gold-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Foto & Videografi</h3>
+                <p class="text-sm font-light text-zinc-400 leading-relaxed mb-4">Abadikan momen berharga dengan tim foto & video profesional kami. Cinematic & timeless.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Same day edit video</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Drone aerial shoot</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Fine art album</li>
+                </ul>
+            </div>
+            <!-- Service 5 -->
+            <div class="glass-card rounded-2xl p-8 reveal group" style="transition-delay:0.4s">
+                <div class="w-14 h-14 rounded-2xl bg-gold-400/10 flex items-center justify-center mb-6 group-hover:bg-gold-400/20 transition-colors">
+                    <i data-lucide="music" class="w-7 h-7 text-gold-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Entertainment</h3>
+                <p class="text-sm font-light text-zinc-400 leading-relaxed mb-4">MC profesional, live band, DJ, dan penampilan spesial untuk meriahkan acaramu.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>MC bilingual</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Live band & DJ</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Dance performance</li>
+                </ul>
+            </div>
+            <!-- Service 6 -->
+            <div class="glass-card rounded-2xl p-8 reveal group" style="transition-delay:0.5s">
+                <div class="w-14 h-14 rounded-2xl bg-gold-400/10 flex items-center justify-center mb-6 group-hover:bg-gold-400/20 transition-colors">
+                    <i data-lucide="graduation-cap" class="w-7 h-7 text-gold-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Makeup Class</h3>
+                <p class="text-sm font-light text-zinc-400 leading-relaxed mb-4">Belajar makeup dari dasar hingga mahir langsung dari tim Pratika. Private & Group class.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Modul Lengkap</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Sertifikat Resmi</li>
+                    <li class="flex items-center gap-2 text-xs text-zinc-500"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>Praktek Langsung</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PORTFOLIO ==================== -->
+<section id="portfolio" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Portfolio</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Karya Terbaik</span> <span class="text-gold-400">Kami</span>
+            </h2>
+        </div>
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10 reveal">
+            <button class="portfolio-filter tab-active px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 bg-white/5 text-zinc-400 transition-all" data-filter="all">Semua</button>
+            <button class="portfolio-filter px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 bg-white/5 text-zinc-400 transition-all" data-filter="bridal">Bridal Makeup</button>
+            <button class="portfolio-filter px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 bg-white/5 text-zinc-400 transition-all" data-filter="decoration">Dekorasi</button>
+            <button class="portfolio-filter px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider border border-white/10 bg-white/5 text-zinc-400 transition-all" data-filter="party">Party & Event</button>
+        </div>
+        <!-- Gallery Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="portfolio-grid">
+            <div class="portfolio-item rounded-2xl overflow-hidden relative group cursor-pointer" data-category="bridal">
+                <img src="https://picsum.photos/seed/pratika-1/600/450.jpg" class="w-full h-72 object-cover img-zoom" alt="Wedding Modern">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <div>
+                        <h4 class="font-semibold text-sm">Rizky & Sarah</h4>
+                        <p class="text-xs text-zinc-400">Bridal Glamour — The Ritz Carlton</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item rounded-2xl overflow-hidden relative group cursor-pointer" data-category="bridal">
+                <img src="https://picsum.photos/seed/pratika-2/600/450.jpg" class="w-full h-72 object-cover img-zoom" alt="Wedding Traditional">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <div>
+                        <h4 class="font-semibold text-sm">Budi & Anisa</h4>
+                        <p class="text-xs text-zinc-400">Adat Jawa — Pendopo Ambarrukmo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item rounded-2xl overflow-hidden relative group cursor-pointer" data-category="decoration">
+                <img src="https://picsum.photos/seed/pratika-3/600/450.jpg" class="w-full h-72 object-cover img-zoom" alt="Wedding Garden">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <div>
+                        <h4 class="font-semibold text-sm">Dimas & Putri</h4>
+                        <p class="text-xs text-zinc-400">Rustic Garden — Botanical Garden</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item rounded-2xl overflow-hidden relative group cursor-pointer" data-category="party">
+                <img src="https://picsum.photos/seed/pratika-4/600/450.jpg" class="w-full h-72 object-cover img-zoom" alt="Wedding Intimate">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <div>
+                        <h4 class="font-semibold text-sm">Andi & Maya</h4>
+                        <p class="text-xs text-zinc-400">Intimate Ceremony — Villa Lembang</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item rounded-2xl overflow-hidden relative group cursor-pointer" data-category="bridal">
+                <img src="https://picsum.photos/seed/pratika-5/600/450.jpg" class="w-full h-72 object-cover img-zoom" alt="Wedding Modern">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <div>
+                        <h4 class="font-semibold text-sm">Fajar & Dina</h4>
+                        <p class="text-xs text-zinc-400">Luxury Glamour — Mulia Hotel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item rounded-2xl overflow-hidden relative group cursor-pointer" data-category="decoration">
+                <img src="https://picsum.photos/seed/pratika-6/600/450.jpg" class="w-full h-72 object-cover img-zoom" alt="Wedding Garden">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <div>
+                        <h4 class="font-semibold text-sm">Reza & Nadia</h4>
+                        <p class="text-xs text-zinc-400">Rustic Garden — Cikini Garden</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PACKAGES / PRICING ==================== -->
+<section id="packages" class="py-24 bg-dark-900">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Paket Pernikahan</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Pilih Paket yang</span> <span class="text-gold-400">Sesuai Kebutuhanmu</span>
+            </h2>
+            <p class="text-base font-light text-zinc-400 max-w-2xl mx-auto">Kombinasi Makeup Artist & WO terbaik untuk Anda</p>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Silver -->
+            <div class="glass-card rounded-2xl p-8 reveal flex flex-col">
+                <div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">Essential</div>
+                <div class="flex items-end gap-1 mb-1">
+                    <span class="text-4xl font-semibold">Hubungi</span>
+                    <span class="text-lg text-zinc-500 mb-1">Admin</span>
+                </div>
+                <p class="text-xs text-zinc-500 mb-8">Bridal Makeup Only • Full Day</p>
+                <ul class="space-y-3 flex-1 mb-8">
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Makeup Akad & Resepsi</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Hijab Doa / Aksesoris</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>2x Retouch</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Softlens & Fake Nails</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-500"><i data-lucide="x" class="w-4 h-4 text-zinc-700 flex-shrink-0 mt-0.5"></i>Busana Pengantin</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-500"><i data-lucide="x" class="w-4 h-4 text-zinc-700 flex-shrink-0 mt-0.5"></i>Wedding Organizer</li>
+                </ul>
+                <a href="#contact" class="btn-outline px-6 py-3 rounded-xl text-sm text-center block">Pilih Paket</a>
+            </div>
+            <!-- Gold (Popular) -->
+            <div class="relative reveal flex flex-col" style="transition-delay:0.15s">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gold-400 rounded-full text-xs font-semibold text-dark-950 z-10">Best Seller</div>
+                <div class="glass-card rounded-2xl p-8 border-gold-400/30 flex-1 flex flex-col" style="border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.03);">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-gold-400 mb-2">Premium</div>
+                    <div class="flex items-end gap-1 mb-1">
+                        <span class="text-4xl font-semibold text-gold-400">Hubungi</span>
+                        <span class="text-lg text-zinc-500 mb-1">Admin</span>
+                    </div>
+                    <p class="text-xs text-zinc-500 mb-8">Makeup + Attire + WO Coordination</p>
+                    <ul class="space-y-3 flex-1 mb-8">
+                        <li class="flex items-start gap-3 text-sm text-zinc-300"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Makeup Akad & Resepsi (2x Ganti Baju)</li>
+                        <li class="flex items-start gap-3 text-sm text-zinc-300"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Busana Pengantin (Sepasang)</li>
+                        <li class="flex items-start gap-3 text-sm text-zinc-300"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Busana Orang Tua (Termasuk)</li>
+                        <li class="flex items-start gap-3 text-sm text-zinc-300"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Day-of Coordination (H-7)</li>
+                        <li class="flex items-start gap-3 text-sm text-zinc-300"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Dekorasi Pelaminan Standar</li>
+                        <li class="flex items-start gap-3 text-sm text-zinc-300"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Foto Dokumentasi (1 Fotografer)</li>
+                        <li class="flex items-start gap-3 text-sm text-zinc-300"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>MC & Sound System</li>
+                    </ul>
+                    <a href="#contact" class="btn-gold px-6 py-3 rounded-xl text-sm text-center block">Pilih Paket</a>
+                </div>
+            </div>
+            <!-- Platinum -->
+            <div class="glass-card rounded-2xl p-8 reveal flex flex-col" style="transition-delay:0.3s">
+                <div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">Luxury</div>
+                <div class="flex items-end gap-1 mb-1">
+                    <span class="text-4xl font-semibold">Hubungi</span>
+                    <span class="text-lg text-zinc-500 mb-1">Admin</span>
+                </div>
+                <p class="text-xs text-zinc-500 mb-8">All-Inclusive Wedding Package</p>
+                <ul class="space-y-3 flex-1 mb-8">
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Semua Fitur Premium</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Dekorasi Premium (Custom)</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Full Planning WO (H-6 Bulan)</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Video Cinematic + Drone</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Live Band Entertainment</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>Catering Premium (All You Can Eat)</li>
+                    <li class="flex items-start gap-3 text-sm text-zinc-400"><i data-lucide="check" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>VIP Treatment</li>
+                </ul>
+                <a href="#contact" class="btn-outline px-6 py-3 rounded-xl text-sm text-center block">Pilih Paket</a>
+            </div>
+        </div>
+        <p class="text-center text-xs text-zinc-600 mt-8 reveal">* Harga dapat disesuaikan dengan kebutuhan. Hubungi kami untuk penawaran terbaik.</p>
+    </div>
+</section>
+
+<!-- ==================== VENDOR PARTNERS ==================== -->
+<section class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Vendor Partners</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Didukung Vendor</span> <span class="text-gold-400">Terpercaya</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 reveal">
+            <div class="glass-card rounded-xl p-6 flex items-center justify-center h-24"><span class="text-sm font-semibold text-zinc-500">Harmoni One</span></div>
+            <div class="glass-card rounded-xl p-6 flex items-center justify-center h-24"><span class="text-sm font-semibold text-zinc-500">Hotel Cikarang</span></div>
+            <div class="glass-card rounded-xl p-6 flex items-center justify-center h-24"><span class="text-sm font-semibold text-zinc-500">Sedap Malam</span></div>
+            <div class="glass-card rounded-xl p-6 flex items-center justify-center h-24"><span class="text-sm font-semibold text-zinc-500">Catering Nusa</span></div>
+            <div class="glass-card rounded-xl p-6 flex items-center justify-center h-24"><span class="text-sm font-semibold text-zinc-500">Bridestory</span></div>
+            <div class="glass-card rounded-xl p-6 flex items-center justify-center h-24"><span class="text-sm font-semibold text-zinc-500">Katarina</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== WEDDING CHECKLIST ==================== -->
+<section id="checklist" class="py-24 bg-dark-900">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Wedding Checklist</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Checklist Persiapan</span> <span class="text-gold-400">Pernikahan</span>
+            </h2>
+            <p class="text-base font-light text-zinc-400 max-w-2xl mx-auto">Tandai item yang sudah selesai. Data tersimpan di browser kamu.</p>
+        </div>
+        <!-- Progress -->
+        <div class="max-w-2xl mx-auto mb-10 reveal">
+            <div class="flex justify-between text-xs mb-2">
+                <span class="text-zinc-400">Progress</span>
+                <span class="text-gold-400 font-semibold" id="checklist-progress">0 / 15 selesai</span>
+            </div>
+            <div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-gold-400 to-pink-500 rounded-full transition-all duration-500" id="checklist-bar" style="width:0%"></div>
+            </div>
+        </div>
+        <!-- Checklist Items -->
+        <div class="max-w-2xl mx-auto grid gap-3 reveal" id="checklist-container">
+            <div class="text-xs font-semibold uppercase tracking-wider text-gold-400/60 mt-2 mb-1">12+ Bulan Sebelum</div>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Tentukan tanggal pernikahan</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Booking Pratika Makeup & WO</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Tentukan budget pernikahan</span>
+            </label>
+            <div class="text-xs font-semibold uppercase tracking-wider text-gold-400/60 mt-4 mb-1">8-11 Bulan Sebelum</div>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Booking venue pernikahan</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Pilih vendor foto & videografi</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Booking catering & food tasting</span>
+            </label>
+            <div class="text-xs font-semibold uppercase tracking-wider text-gold-400/60 mt-4 mb-1">4-7 Bulan Sebelum</div>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Desain & kirim undangan</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Pre-wedding photoshoot</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Makeup trial & fitting baju</span>
+            </label>
+            <div class="text-xs font-semibold uppercase tracking-wider text-gold-400/60 mt-4 mb-1">1-3 Bulan Sebelum</div>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Konfirmasi semua vendor</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Finalisasi rundown & seating plan</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Akad NIKAH / pemberkatan</span>
+            </label>
+            <div class="text-xs font-semibold uppercase tracking-wider text-gold-400/60 mt-4 mb-1">1 Minggu Sebelum</div>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Rehearsal / technical meeting</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Final briefing semua tim</span>
+            </label>
+            <label class="checklist-item flex items-center gap-4 glass-card rounded-xl px-5 py-4 cursor-pointer" data-checked="false">
+                <div class="check-box w-5 h-5 rounded-md border border-white/20 flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3 h-3 text-dark-950 opacity-0 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                <span class="text-sm text-zinc-300 transition-colors">Rest & enjoy the big day! 🎉</span>
+            </label>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== BUDGET ESTIMATOR ==================== -->
+<section id="budget" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Budget Estimator</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Estimasi Budget</span> <span class="text-gold-400">Pernikahanmu</span>
+            </h2>
+            <p class="text-base font-light text-zinc-400 max-w-2xl mx-auto">Atur jumlah tamu dan preferensi untuk mendapatkan estimasi kasar</p>
+        </div>
+        <div class="max-w-3xl mx-auto grid lg:grid-cols-2 gap-8 reveal">
+            <!-- Form -->
+            <div class="glass-card rounded-2xl p-8 space-y-5">
+                <div>
+                    <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Jumlah Tamu</label>
+                    <input type="number" id="budget-guests" value="300" min="50" max="2000" step="50" class="w-full px-4 py-3 rounded-xl text-sm">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Tipe Venue</label>
+                    <select id="budget-venue" class="w-full px-4 py-3 rounded-xl text-sm">
+                        <option value="hotel">Hotel Bintang 5</option>
+                        <option value="villa">Villa / Garden</option>
+                        <option value="ballroom">Ballroom Standar</option>
+                        <option value="rumah">Rumah / Outdoor</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Konsep Dekorasi</label>
+                    <select id="budget-deco" class="w-full px-4 py-3 rounded-xl text-sm">
+                        <option value="premium">Premium / Mewah</option>
+                        <option value="standar">Standar</option>
+                        <option value="minimalis">Minimalis</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Entertainment</label>
+                    <select id="budget-entertain" class="w-full px-4 py-3 rounded-xl text-sm">
+                        <option value="full">Live Band + DJ + MC</option>
+                        <option value="band">Live Band + MC</option>
+                        <option value="dj">DJ + MC</option>
+                        <option value="mc">MC Saja</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Dokumentasi</label>
+                    <select id="budget-doc" class="w-full px-4 py-3 rounded-xl text-sm">
+                        <option value="premium">Foto+Video+Drone+Album</option>
+                        <option value="standar">Foto+Video+Album</option>
+                        <option value="basic">Foto Saja</option>
+                    </select>
+                </div>
+                <button onclick="calculateBudget()" class="btn-gold w-full py-3 rounded-xl text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Hitung Estimasi
+                </button>
+            </div>
+            <!-- Result -->
+            <div class="glass-card rounded-2xl p-8 flex flex-col">
+                <h3 class="text-lg font-semibold mb-6">Estimasi Budget</h3>
+                <div class="flex-1 space-y-4" id="budget-result">
+                    <div class="flex justify-between items-center py-3 border-b border-white/5">
+                        <span class="text-sm text-zinc-400">Venue & Catering</span>
+                        <span class="text-sm font-semibold" id="res-venue">-</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-white/5">
+                        <span class="text-sm text-zinc-400">Dekorasi</span>
+                        <span class="text-sm font-semibold" id="res-deco">-</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-white/5">
+                        <span class="text-sm text-zinc-400">Entertainment</span>
+                        <span class="text-sm font-semibold" id="res-entertain">-</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-white/5">
+                        <span class="text-sm text-zinc-400">Dokumentasi</span>
+                        <span class="text-sm font-semibold" id="res-doc">-</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-white/5">
+                        <span class="text-sm text-zinc-400">WO & Koordinasi</span>
+                        <span class="text-sm font-semibold" id="res-wo">-</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-white/5">
+                        <span class="text-sm text-zinc-400">Lain-lain (Attire, dll)</span>
+                        <span class="text-sm font-semibold" id="res-other">-</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 mt-2">
+                        <span class="text-base font-semibold text-gold-400">TOTAL ESTIMASI</span>
+                        <span class="text-xl font-semibold text-gold-400" id="res-total">-</span>
+                    </div>
+                </div>
+                <p class="text-[10px] text-zinc-600 mt-4">* Estimasi kasar berdasarkan rata-rata harga pasar. Hubungi kami untuk penawaran akurat.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section id="testimonials" class="py-24 bg-dark-900">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Testimoni</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Kata Mereka</span> <span class="text-gold-400">Tentang Kami</span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="glass-card rounded-2xl p-8 reveal">
+                <div class="flex gap-1 mb-4">
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                </div>
+                <p class="text-sm font-light text-zinc-300 leading-relaxed mb-6">"Pratika Makeup benar-benar membuat hari pernikahan kami menjadi sempurna. Makeup saya tahan seharian penuh dan tim WO-nya sangat sigap mengatur acara."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center text-gold-400 font-semibold text-sm">RS</div>
+                    <div>
+                        <div class="text-sm font-semibold">Rizky & Sarah</div>
+                        <div class="text-xs text-zinc-500">Modern Wedding — Cikarang</div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay:0.1s">
+                <div class="flex gap-1 mb-4">
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                </div>
+                <p class="text-sm font-light text-zinc-300 leading-relaxed mb-6">"Awalnya ragu pakai WO, tapi tim Pratika buktikan semuanya. Dari konsep adat Jawa yang rumit bisa dieksekusi dengan indah. Super recommended!"</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center text-gold-400 font-semibold text-sm">BA</div>
+                    <div>
+                        <div class="text-sm font-semibold">Budi & Anisa</div>
+                        <div class="text-xs text-zinc-500">Traditional Wedding — Bekasi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay:0.2s">
+                <div class="flex gap-1 mb-4">
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 text-gold-400 fill-gold-400"></i>
+                </div>
+                <p class="text-sm font-light text-zinc-300 leading-relaxed mb-6">"Budget kami terbatas tapi hasilnya luar biasa! Pratika bisa menyesuaikan paket tanpa mengurangi kualitas makeup maupun koordinasi acara."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center text-gold-400 font-semibold text-sm">AM</div>
+                    <div>
+                        <div class="text-sm font-semibold">Andi & Maya</div>
+                        <div class="text-xs text-zinc-500">Intimate Wedding — Jakarta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TEAM ==================== -->
+<section class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Tim Kami</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Di Balik</span> <span class="text-gold-400">Keajaiban</span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                <div class="h-64 overflow-hidden"><img src="https://picsum.photos/seed/pratika-ceo/400/384.jpg" class="w-full h-full object-cover img-zoom" alt="CEO"></div>
+                <div class="p-5">
+                    <h4 class="font-semibold text-sm">Pratika</h4>
+                    <p class="text-xs text-gold-400">Founder & Lead MUA</p>
+                    <div class="flex gap-3 mt-3">
+                        <a href="https://instagram.com/pratika.makeup" class="text-zinc-500 hover:text-gold-400 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl overflow-hidden reveal group" style="transition-delay:0.1s">
+                <div class="h-64 overflow-hidden"><img src="https://picsum.photos/seed/pratika-wo/400/384.jpg" class="w-full h-full object-cover img-zoom" alt="WO"></div>
+                <div class="p-5">
+                    <h4 class="font-semibold text-sm">Team WO</h4>
+                    <p class="text-xs text-gold-400">Coordinator</p>
+                    <div class="flex gap-3 mt-3">
+                        <a href="#" class="text-zinc-500 hover:text-gold-400 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl overflow-hidden reveal group" style="transition-delay:0.2s">
+                <div class="h-64 overflow-hidden"><img src="https://picsum.photos/seed/pratika-photo/400/384.jpg" class="w-full h-full object-cover img-zoom" alt="Photographer"></div>
+                <div class="p-5">
+                    <h4 class="font-semibold text-sm">Tim Dokumentasi</h4>
+                    <p class="text-xs text-gold-400">Photographer</p>
+                    <div class="flex gap-3 mt-3">
+                        <a href="#" class="text-zinc-500 hover:text-gold-400 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl overflow-hidden reveal group" style="transition-delay:0.3s">
+                <div class="h-64 overflow-hidden"><img src="https://picsum.photos/seed/pratika-deco/400/384.jpg" class="w-full h-full object-cover img-zoom" alt="Decorator"></div>
+                <div class="p-5">
+                    <h4 class="font-semibold text-sm">Tim Dekorasi</h4>
+                    <p class="text-xs text-gold-400">Designer</p>
+                    <div class="flex gap-3 mt-3">
+                        <a href="#" class="text-zinc-500 hover:text-gold-400 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq" class="py-24 bg-dark-900">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">FAQ</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+                <span class="text-gradient">Pertanyaan</span> <span class="text-gold-400">yang Sering Ditanyakan</span>
+            </h2>
+        </div>
+        <div class="space-y-3 reveal" id="faq-container">
+            <div class="faq-item glass-card rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+                    <span class="text-sm font-semibold pr-4">Berapa lama sebelum hari H sebaiknya booking?</span>
+                    <i data-lucide="plus" class="w-4 h-4 text-gold-400 flex-shrink-0 faq-icon transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content px-5 pb-5 hidden">
+                    <p class="text-sm font-light text-zinc-400 leading-relaxed">Idealnya 6-12 bulan sebelum hari H untuk Makeup, dan 12-18 bulan untuk Wedding Organizer (terutama untuk tanggal populer).</p>
+                </div>
+            </div>
+            <div class="faq-item glass-card rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+                    <span class="text-sm font-semibold pr-4">Apakah paket bisa dicustom?</span>
+                    <i data-lucide="plus" class="w-4 h-4 text-gold-400 flex-shrink-0 faq-icon transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content px-5 pb-5 hidden">
+                    <p class="text-sm font-light text-zinc-400 leading-relaxed">Tentu saja! Kami fleksibel. Anda bisa memilih hanya Makeup, hanya WO, atau paket All-in (Makeup+WO+Dekorasi).</p>
+                </div>
+            </div>
+            <div class="faq-item glass-card rounded-xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+                    <span class="text-sm font-semibold pr-4">Apakah menerima wedding di luar kota?</span>
+                    <i data-lucide="plus" class="w-4 h-4 text-gold-400 flex-shrink-0 faq-icon transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content px-5 pb-5 hidden">
+                    <p class="text-sm font-light text-zinc-400 leading-relaxed">Ya, kami melayani area Cikarang, Bekasi, Jakarta, dan sekitarnya. Untuk luar pulau Jawa, biaya akomodasi tim akan disesuaikan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CONTACT / BOOKING FORM ==================== -->
+<section id="contact" class="py-24 bg-dark-900">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16">
+            <!-- Info -->
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-400/30 bg-gold-400/5 mb-6">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-gold-400">Hubungi Kami</span>
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-6">
+                    <span class="text-gradient">Siap Memulai</span><br>
+                    <span class="text-gold-400">Perjalanan Cintamu?</span>
+                </h2>
+                <p class="text-base font-light text-zinc-400 leading-relaxed mb-10">
+                    Konsultasi pertama gratis! Ceritakan impian pernikahanmu dan kami akan bantu mewujudkannya.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold mb-1">Studio Kami</h4>
+                            <p class="text-sm text-zinc-400">Cikarang, Bekasi & Jakarta<br>Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="phone" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold mb-1">WhatsApp</h4>
+                            <p class="text-sm text-zinc-400">+62 877-7579-2589</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="mail" class="w-5 h-5 text-gold-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold mb-1">Email</h4>
+                            <p class="text-sm text-zinc-400">csduosejoli@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Social -->
+                <div class="flex gap-4 mt-8">
+                    <a href="https://instagram.com/pratika.makeup" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-zinc-400 hover:text-gold-400 hover:border-gold-400/30 transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-zinc-400 hover:text-gold-400 hover:border-gold-400/30 transition-all"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-zinc-400 hover:text-gold-400 hover:border-gold-400/30 transition-all"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+            <!-- Form -->
+            <div class="reveal" style="transition-delay:0.2s">
+                <form id="booking-form" class="glass-card rounded-2xl p-8 space-y-5" onsubmit="submitForm(event)">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Nama Mempelai Pria</label>
+                            <input type="text" id="groomName" required placeholder="Nama lengkap" class="w-full px-4 py-3 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Nama Mempelai Wanita</label>
+                            <input type="text" id="brideName" required placeholder="Nama lengkap" class="w-full px-4 py-3 rounded-xl text-sm">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">No. WhatsApp</label>
+                            <input type="tel" id="waPhone" required placeholder="08xxxxxxxxxx" class="w-full px-4 py-3 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Tanggal Pernikahan</label>
+                            <input type="date" id="weddingDate" required class="w-full px-4 py-3 rounded-xl text-sm">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Lokasi / Gedung</label>
+                            <input type="text" id="venue" placeholder="Nama lokasi" class="w-full px-4 py-3 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Estimasi Tamu</label>
+                            <input type="number" id="guests" placeholder="Jumlah orang" class="w-full px-4 py-3 rounded-xl text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Layanan yang Diminati</label>
+                        <select id="serviceType" class="w-full px-4 py-3 rounded-xl text-sm">
+                            <option value="">— Pilih Layanan —</option>
+                            <option value="Full Package (Makeup + WO)">Full Package (Makeup + WO)</option>
+                            <option value="Bridal Makeup Only">Bridal Makeup Only</option>
+                            <option value="Wedding Organizer Only">Wedding Organizer Only</option>
+                            <option value="Makeup Class">Daftar Kelas Makeup</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">Ceritakan Impian Pernikahanmu</label>
+                        <textarea id="message" rows="4" placeholder="Tema, konsep, atau pertanyaan..." class="w-full px-4 py-3 rounded-xl text-sm resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="btn-gold w-full py-4 rounded-xl text-base flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-4 h-4"></i> Kirim ke WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            <div>
+                <a href="#hero" class="font-logo text-xl text-gold-400 tracking-wider">PRATIKA</a>
+                <p class="text-sm font-light text-zinc-500 leading-relaxed mt-4">Professional Makeup Artist & Wedding Organizer. Mewujudkan momen indah dengan sentuhan sempurna.</p>
+                <div class="flex gap-3 mt-6">
+                    <a href="https://instagram.com/pratika.makeup" class="text-zinc-600 hover:text-gold-400 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="#" class="text-zinc-600 hover:text-gold-400 transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                    <a href="#" class="text-zinc-600 hover:text-gold-400 transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold mb-4">Layanan</h4>
+                <ul class="space-y-3">
+                    <li><a href="#services" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Bridal Makeup</a></li>
+                    <li><a href="#services" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Wedding Organizer</a></li>
+                    <li><a href="#services" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Dekorasi</a></li>
+                    <li><a href="#services" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Dokumentasi</a></li>
+                    <li><a href="#services" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Makeup Class</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold mb-4">Perusahaan</h4>
+                <ul class="space-y-3">
+                    <li><a href="#about" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Tentang Kami</a></li>
+                    <li><a href="#portfolio" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Portfolio</a></li>
+                    <li><a href="#testimonials" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Testimoni</a></li>
+                    <li><a href="#contact" class="text-sm text-zinc-500 hover:text-gold-400 transition-colors">Kontak</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold mb-4">Newsletter</h4>
+                <p class="text-sm text-zinc-500 mb-4">Dapatkan tips pernikahan & promo eksklusif.</p>
+                <form onsubmit="subscribeNewsletter(event)" class="flex gap-2">
+                    <input type="email" required placeholder="Email kamu" class="flex-1 px-4 py-2.5 rounded-xl text-sm">
+                    <button type="submit" class="btn-gold px-4 py-2.5 rounded-xl"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-zinc-600">© 2024 Pratika Makeup & WO. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ==================== WHATSAPP FLOAT ==================== -->
+<a href="https://wa.me/6287775792589?text=Halo%20Kak%20Pratika,%20saya%20ingin%20konsultasi%20pernikahan" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 transition-all hover:scale-110 group">
+    <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+    <span class="absolute right-full mr-3 bg-dark-800 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10">Chat via WhatsApp</span>
+</a>
+
+<!-- ==================== BACK TO TOP ==================== -->
+<button id="back-to-top" onclick="window.scrollTo({top:0})" class="fixed bottom-6 left-6 z-50 w-10 h-10 bg-dark-700 hover:bg-dark-800 border border-white/10 rounded-full flex items-center justify-center transition-all opacity-0 translate-y-4 pointer-events-none">
+    <i data-lucide="chevron-up" class="w-4 h-4 text-zinc-400"></i>
+</button>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+    // Init Lucide Icons
+    lucide.createIcons();
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+            navbar.classList.add('bg-dark-950/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+        } else {
+            navbar.classList.remove('bg-dark-950/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+        }
+        if (window.scrollY > 600) {
+            backToTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            backToTop.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            backToTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            backToTop.classList.remove('opacity-100', 'translate-y-0');
+        }
+    });
+
+    // ===== MOBILE MENU =====
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // ===== REVEAL ON SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ===== COUNTDOWN TIMER =====
+    function updateCountdown() {
+        const target = new Date('2025-12-28T08:00:00+07:00');
+        const now = new Date();
+        const diff = target - now;
+        if (diff <= 0) return;
+        const d = Math.floor(diff / (1000*60*60*24));
+        const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+        const s = Math.floor((diff % (1000*60)) / 1000);
+        document.getElementById('countdown-d').textContent = String(d).padStart(2,'0');
+        document.getElementById('countdown-h').textContent = String(h).padStart(2,'0');
+        document.getElementById('countdown-m').textContent = String(m).padStart(2,'0');
+        document.getElementById('countdown-s').textContent = String(s).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ===== PARALLAX HERO =====
+    window.addEventListener('scroll', () => {
+        const heroBg = document.getElementById('hero-bg');
+        if (heroBg) {
+            heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+        }
+    });
+
+    // ===== PORTFOLIO FILTER =====
+    const filterBtns = document.querySelectorAll('.portfolio-filter');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('tab-active'));
+            btn.classList.add('tab-active');
+            const filter = btn.dataset.filter;
+            portfolioItems.forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.style.display = 'block';
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.4s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.95)';
+                    setTimeout(() => { item.style.display = 'none'; }, 400);
+                }
+            });
+        });
+    });
+
+    // ===== WEDDING CHECKLIST =====
+    const checklistContainer = document.getElementById('checklist-container');
+    const checklistItems = checklistContainer.querySelectorAll('.checklist-item');
+    const progressText = document.getElementById('checklist-progress');
+    const progressBar = document.getElementById('checklist-bar');
+
+    // Load saved state
+    const savedChecks = JSON.parse(localStorage.getItem('pratika-checklist') || '{}');
+    checklistItems.forEach(item => {
+        const idx = Array.from(checklistItems).indexOf(item);
+        if (savedChecks[idx]) {
+            item.classList.add('checked');
+            item.dataset.checked = 'true';
+        }
+    });
+    updateChecklistProgress();
+
+    checklistItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const isChecked = item.dataset.checked === 'true';
+            item.dataset.checked = isChecked ? 'false' : 'true';
+            item.classList.toggle('checked');
+            // Save to localStorage
+            const idx = Array.from(checklistItems).indexOf(item);
+            const saved = JSON.parse(localStorage.getItem('pratika-checklist') || '{}');
+            if (item.dataset.checked === 'true') {
+                saved[idx] = true;
+            } else {
+                delete saved[idx];
+            }
+            localStorage.setItem('pratika-checklist', JSON.stringify(saved));
+            updateChecklistProgress();
+        });
+    });
+
+    function updateChecklistProgress() {
+        const total = checklistItems.length;
+        const checked = checklistContainer.querySelectorAll('.checklist-item.checked').length;
+        progressText.textContent = `${checked} / ${total} selesai`;
+        progressBar.style.width = `${(checked/total)*100}%`;
+    }
+
+    // ===== BUDGET ESTIMATOR =====
+    function formatRupiah(num) {
+        return 'Rp ' + num.toLocaleString('id-ID');
+    }
+
+    function calculateBudget() {
+        const guests = parseInt(document.getElementById('budget-guests').value) || 300;
+        const venue = document.getElementById('budget-venue').value;
+        const deco = document.getElementById('budget-deco').value;
+        const entertain = document.getElementById('budget-entertain').value;
+        const doc = document.getElementById('budget-doc').value;
+
+        const venueCost = { hotel: 250000, villa: 150000, ballroom: 120000, rumah: 50000 };
+        const decoCost = { premium: 150000, standar: 80000, minimalis: 40000 };
+        const entertainCost = { full: 45000, band: 30000, dj: 20000, mc: 5000 };
+        const docCost = { premium: 35000, standar: 20000, basic: 8000 };
+
+        const calcVenue = (venueCost[venue] || 120000) * guests;
+        const calcDeco = decoCost[deco] || 80000;
+        const calcEntertain = entertainCost[entertain] || 20000;
+        const calcDoc = docCost[doc] || 20000;
+        const calcWO = calcVenue * 0.1; // 10% fee
+        const calcOther = guests * 150000; // Miscellaneous
+
+        const total = calcVenue + calcDeco + calcEntertain + calcDoc + calcWO + calcOther;
+
+        document.getElementById('res-venue').textContent = formatRupiah(calcVenue);
+        document.getElementById('res-deco').textContent = formatRupiah(calcDeco);
+        document.getElementById('res-entertain').textContent = formatRupiah(calcEntertain);
+        document.getElementById('res-doc').textContent = formatRupiah(calcDoc);
+        document.getElementById('res-wo').textContent = formatRupiah(calcWO);
+        document.getElementById('res-other').textContent = formatRupiah(calcOther);
+        document.getElementById('res-total').textContent = formatRupiah(total);
+
+        // Animate
+        document.getElementById('res-total').style.transform = 'scale(1.1)';
+        setTimeout(() => { document.getElementById('res-total').style.transition = 'transform 0.3s'; document.getElementById('res-total').style.transform = 'scale(1)'; }, 200);
+
+        showToast('Estimasi budget berhasil dihitung!');
+    }
+
+    // ===== FAQ ACCORDION =====
+    function toggleFaq(btn) {
+        const item = btn.parentElement;
+        const content = item.querySelector('.faq-content');
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close all
+        document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+
+        if (!isOpen) {
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(45deg)';
+        }
+    }
+
+    // ===== TOAST =====
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ===== FORM SUBMIT (WHATSAPP LOGIC) =====
+    function submitForm(e) {
+        e.preventDefault();
+        
+        // Get Values
+        const groom = document.getElementById('groomName').value;
+        const bride = document.getElementById('brideName').value;
+        const phone = document.getElementById('waPhone').value;
+        const date = document.getElementById('weddingDate').value;
+        const venue = document.getElementById('venue').value;
+        const guests = document.getElementById('guests').value;
+        const service = document.getElementById('serviceType').value;
+        const message = document.getElementById('message').value;
+
+        // Format Date
+        const formattedDate = date ? new Date(date).toLocaleDateString('id-ID', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+        }) : 'Belum ditentukan';
+
+        // WhatsApp Number
+        const waNumber = '6287775792589';
+
+        // Create Message
+        let waMsg = `Halo Kak Pratika! 👰💄\n\n`;
+        waMsg += `Saya ingin konsultasi pernikahan:\n`;
+        waMsg += `━━━━━━━━━━━━━━━━━━━━\n`;
+        waMsg += `🤵 *Mempelai Pria:* ${groom}\n`;
+        waMsg += `👰 *Mempelai Wanita:* ${bride}\n`;
+        waMsg += `📱 *No. WhatsApp:* ${phone}\n`;
+        waMsg += `📅 *Rencana Tanggal:* ${formattedDate}\n`;
+        waMsg += `📍 *Lokasi:* ${venue}\n`;
+        waMsg += `👥 *Estimasi Tamu:* ${guests} Pax\n`;
+        waMsg += `📦 *Layanan Diminati:* ${service}\n`;
+        if(message) waMsg += `💬 *Pesan Tambahan:*\n${message}\n`;
+        waMsg += `━━━━━━━━━━━━━━━━━━━━\n`;
+        waMsg += `\nMohon info ketersediaan tanggal & penawaran harga. Terima kasih! 🙏`;
+
+        // Encode & Open
+        const encodedMsg = encodeURIComponent(waMsg);
+        const waUrl = `https://wa.me/${6287775792589}?text=${encodedMsg}`;
+        
+        // User Feedback
+        showToast('Membuka WhatsApp...');
+        setTimeout(() => {
+            window.open(waUrl, '_blank');
+        }, 1000);
+    }
+
+    // ===== NEWSLETTER =====
+    function subscribeNewsletter(e) {
+        e.preventDefault();
+        e.target.reset();
+        showToast('Berhasil berlangganan newsletter! 🎉');
+    }
+
+    // ===== AUTO CALCULATE BUDGET ON CHANGE =====
+    document.querySelectorAll('#budget-guests, #budget-venue, #budget-deco, #budget-entertain, #budget-doc').forEach(el => {
+        el.addEventListener('change', calculateBudget);
+    });
+</script>
+</body>
+</html>
